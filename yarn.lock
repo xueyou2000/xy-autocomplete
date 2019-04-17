@@ -1700,6 +1700,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/classnames@^2.2.7":
+  version "2.2.7"
+  resolved "http://registry.npm.taobao.org/@types/classnames/download/@types/classnames-2.2.7.tgz#fb68cc9be8487e6ea5b13700e759bfbab7e0fefd"
+  integrity sha1-+2jMm+hIfm6lsTcA51m/urfg/v0=
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "http://registry.npm.taobao.org/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -3359,7 +3364,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "http://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Fclassnames%2Fdownload%2Fclassnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
@@ -10845,6 +10850,21 @@ utila@^0.4.0, utila@~0.4:
   resolved "http://registry.npm.taobao.org/utila/download/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
+utils-dom@0.0.56:
+  version "0.0.56"
+  resolved "http://registry.npm.taobao.org/utils-dom/download/utils-dom-0.0.56.tgz#ca5e43660cddace458f6d76ca86cb590f5ee59ad"
+  integrity sha1-yl5DZgzdrORY9tdsqGy1kPXuWa0=
+
+utils-hooks@0.0.58:
+  version "0.0.58"
+  resolved "http://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.58.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Futils-hooks%2Fdownload%2Futils-hooks-0.0.58.tgz#2187df6024930f7edbd040a50f24023ab86908ed"
+  integrity sha1-IYffYCSTD37b0EClDyQCOrhpCO0=
+
+utils-hooks@^0.0.57:
+  version "0.0.57"
+  resolved "http://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.57.tgz#1d86f9d3e341c319b5da1bf17ac923e3cfd6b9fa"
+  integrity sha1-HYb50+NBwxm12hvxeskj48/Wufo=
+
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/utils-merge/download/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
@@ -11228,6 +11248,27 @@ xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "http://registry.npm.taobao.org/xtend/download/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
+
+xy-empty@^0.0.2:
+  version "0.0.2"
+  resolved "http://registry.npm.taobao.org/xy-empty/download/xy-empty-0.0.2.tgz#9d93949e0b448b9f5082c389873c3fd1c7d2335f"
+  integrity sha1-nZOUngtEi59QgsOJhzw/0cfSM18=
+  dependencies:
+    classnames "^2.2.6"
+    react "^16.8.2"
+    react-dom "^16.8.2"
+
+xy-select@0.0.44:
+  version "0.0.44"
+  resolved "http://registry.npm.taobao.org/xy-select/download/xy-select-0.0.44.tgz#0b1299462cb0ca7f9c7b376398e49ecff1fbdab5"
+  integrity sha1-CxKZRiywyn+cezdjmOSez/H72rU=
+  dependencies:
+    classnames "^2.2.6"
+    react "^16.8.2"
+    react-dom "^16.8.2"
+    utils-dom "0.0.56"
+    utils-hooks "0.0.58"
+    xy-empty "^0.0.2"
 
 y18n@^3.2.1:
   version "3.2.1"

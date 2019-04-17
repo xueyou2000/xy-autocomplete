@@ -36,8 +36,8 @@ yarn add xy-autocomplete
 ```ts
 import React from "react";
 import ReactDOM from "react-dom";
-import XyAutocomplete from "xy-autocomplete";
-ReactDOM.render(<XyAutocomplete />, container);
+import AutoComplete from "xy-autocomplete";
+ReactDOM.render(<AutoComplete />, container);
 ```
 
 ## 开发
