@@ -23,7 +23,15 @@ export function AutoCompleteInput(props: AutoCompleteInputProps) {
 
     return (
         <div className={classString} style={style}>
-            <input type="text" className={`${inputPrefixCls}-input`} onCompositionStart={(e) => null} aria-disabled={disabled} {...rest} {...(isControll ? { value: value || "" } : { defaultValue: value })} onChange={changeHandle} />
+            <input
+                type="text"
+                className={classNames(`${inputPrefixCls}-input`, className)}
+                onCompositionStart={(e) => null}
+                aria-disabled={disabled}
+                {...rest}
+                {...(isControll ? { value: value || "" } : { defaultValue: value })}
+                onChange={changeHandle}
+            />
         </div>
     );
 }

@@ -1,9 +1,10 @@
 import classNames from "classnames";
-import React, { useRef, useEffect } from "react";
-import { Dropdown, SelectContext, useNnavigate, useOptions, useVisible } from "xy-select";
+import React, { useRef } from "react";
+import { Dropdown, SelectContext, useNnavigate, useOptions } from "xy-select";
 import "xy-select/assets/index.css";
 import AutoCompleteInput from "./AutoCompleteInput";
 import useValue from "./Hooks/useValue";
+import useVisible from "./Hooks/useVisible";
 import { AutoCompleteProps } from "./interface";
 import Suggest from "./Suggest";
 
@@ -11,8 +12,7 @@ export function AutoComplete(props: AutoCompleteProps) {
     const { prefixCls = "xy-autocomplete", className, popupClassName, stretch = true, style, backfill, children, filter, dataSource = [], empyPlaceholder, customItem, onChange, onSelect, onSearch, ...inputProps } = props;
     const ref = useRef();
     const dropdownRef = useRef();
-    const empty = !dataSource || (dataSource instanceof Array && dataSource.length <= 0);
-    const [visible, setVisible] = useVisible(ref, dropdownRef, props.disabled, stretch);
+    const [visible, setVisible, handleFocus, handleBlur] = useVisible(props, ref, dropdownRef);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
     const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, setVisible, cacheSelectCfg);
     const [focusValue, handleKeyDown, scrollwrapRef] = useNnavigate(options, value, onOptionSelect, setVisible);
@@ -20,32 +20,11 @@ export function AutoComplete(props: AutoCompleteProps) {
         [`${prefixCls}-visible`]: false,
         [`${prefixCls}-disabled`]: props.disabled
     });
-    const focusRef = useRef(false);
-
-    // Tips: 当前焦点时, options 更新了, 也要判断是否收起下拉列表
-    useEffect(() => {
-        if (focusRef.current) {
-            handleFocus();
-        } else {
-            handleBlur();
-        }
-    }, [dataSource]);
-
-    function handleFocus() {
-        focusRef.current = true;
-        if (!empty) {
-            setVisible(true, true);
-        }
-    }
-
-    function handleBlur() {
-        focusRef.current = false;
-        setVisible(false);
-    }
 
     function renderInput() {
         const _inputProps = {
             ...inputProps,
+            className: "autocompolete-inputbox",
             value,
             onKeyDown: handleKeyDown,
             onChange: searchChangeHandle,
