@@ -10860,10 +10860,10 @@ utils-hooks@0.0.58:
   resolved "http://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.58.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Futils-hooks%2Fdownload%2Futils-hooks-0.0.58.tgz#2187df6024930f7edbd040a50f24023ab86908ed"
   integrity sha1-IYffYCSTD37b0EClDyQCOrhpCO0=
 
-utils-hooks@0.0.59:
-  version "0.0.59"
-  resolved "http://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.59.tgz#96eb8e5f533c0306c1e31153aa469025ef0e5722"
-  integrity sha1-luuOX1M8AwbB4xFTqkaQJe8OVyI=
+utils-hooks@0.0.60:
+  version "0.0.60"
+  resolved "http://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.60.tgz#37fe4934cac783d16eba308aebb83ae64a9be755"
+  integrity sha1-N/5JNMrHg9FuujCK67g65kqb51U=
 
 utils-merge@1.0.1:
   version "1.0.1"
@@ -11258,10 +11258,10 @@ xy-empty@^0.0.2:
     react "^16.8.2"
     react-dom "^16.8.2"
 
-xy-select@0.0.5:
-  version "0.0.5"
-  resolved "http://registry.npm.taobao.org/xy-select/download/xy-select-0.0.5.tgz#18a4e5ead9f060eb44d1d0fd2efbe94701cb89b2"
-  integrity sha1-GKTl6tnwYOtE0dD9LvvpRwHLibI=
+xy-select@0.0.51:
+  version "0.0.51"
+  resolved "http://registry.npm.taobao.org/xy-select/download/xy-select-0.0.51.tgz#3db2f770dac0cc1698d1d3a9a83bbd0ff424a7d4"
+  integrity sha1-PbL3cNrAzBaY0dOpqDu9D/Qkp9Q=
   dependencies:
     classnames "^2.2.6"
     react "^16.8.2"

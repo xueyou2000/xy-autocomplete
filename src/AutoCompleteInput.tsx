@@ -25,6 +25,7 @@ export function AutoCompleteInput(props: AutoCompleteInputProps) {
         <div className={classString} style={style}>
             <input
                 type="text"
+                disabled={disabled}
                 className={classNames(`${inputPrefixCls}-input`, className)}
                 onCompositionStart={(e) => null}
                 aria-disabled={disabled}

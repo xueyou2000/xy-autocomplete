@@ -76,7 +76,7 @@ export default function() {
     return (
         <div>
             <h1>简单演示</h1>
-            <AutoComplete style={{ width: "180px" }} delay={100} placeholder="请搜索商家" dataSource={data} onSearch={searchHandle} />
+            <AutoComplete style={{ width: "180px" }} backfill={true} onSearch={val => console.log('onSearch: ' + val)} placeholder="请搜索商家" dataSource={mockData} />
         </div>
     );
 }

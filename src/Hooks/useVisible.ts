@@ -21,7 +21,7 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
 
     function handleFocus() {
         focusRef.current = true;
-        if (!empty && !visible && !props.disabled) {
+        if (!empty && !props.disabled) {
             setVisible(true, true);
         }
     }

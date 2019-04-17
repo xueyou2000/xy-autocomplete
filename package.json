@@ -57,8 +57,8 @@
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
         "utils-dom": "0.0.56",
-        "utils-hooks": "0.0.59",
-        "xy-select": "0.0.5"
+        "utils-hooks": "0.0.60",
+        "xy-select": "0.0.51"
     },
     "repository": {
         "type": "git",
