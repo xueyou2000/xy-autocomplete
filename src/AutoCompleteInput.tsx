@@ -5,7 +5,7 @@ import { AutoCompleteInputProps } from "./interface";
 
 export function AutoCompleteInput(props: AutoCompleteInputProps) {
     const { prefixCls, className, style, disabled, onChange, ...rest } = props;
-    const inputPrefixCls = `${prefixCls}-inputwrap`;
+    const inputPrefixCls = `xy-autocomplete-inputwrap`;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue", "");
     const classString = classNames(inputPrefixCls, className, {
         [`${inputPrefixCls}-disabled`]: disabled
@@ -23,7 +23,7 @@ export function AutoCompleteInput(props: AutoCompleteInputProps) {
 
     return (
         <div className={classString} style={style}>
-            <input type="text" className={`${inputPrefixCls}-input`} onCompositionStart={e => null} aria-disabled={disabled} {...rest} {...(isControll ? { value: value || "" } : { defaultValue: value })} onChange={changeHandle} />
+            <input type="text" className={`${inputPrefixCls}-input`} onCompositionStart={(e) => null} aria-disabled={disabled} {...rest} {...(isControll ? { value: value || "" } : { defaultValue: value })} onChange={changeHandle} />
         </div>
     );
 }

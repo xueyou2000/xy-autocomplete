@@ -1,7 +1,7 @@
 import React from "react";
-import { SuggestProps } from "./interface";
-import { OptionConfig } from "xy-select/es/interface";
 import { Option } from "xy-select";
+import { OptionConfig } from "xy-select/es/interface";
+import { SuggestProps } from "./interface";
 
 export default function Suggest(props: SuggestProps) {
     const { prefixCls, suggestions, customItem } = props;

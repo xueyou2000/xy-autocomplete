@@ -9,6 +9,7 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
     const { backfill, disabled, onChange, onSelect, onSearch, delay = 500 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
     const typingRef = useRef(false);
+    const searchRef = useRef("");
 
     useDebounceCallback(
         () => {
@@ -23,7 +24,7 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
             }
         },
         delay,
-        [value]
+        [searchRef.current]
     );
 
     function compositionStartHandle(e: React.CompositionEvent<HTMLInputElement>) {
@@ -46,6 +47,11 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
         }
     }
 
+    function searchChangeHandle(val: string) {
+        searchRef.current = val;
+        changeValue(val);
+    }
+
     /**
      * 选中option
      * @param val
@@ -60,5 +66,5 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
         setVisible(false);
     }
 
-    return [value, changeValue, optionSelectHandle, compositionStartHandle, compositionEndHandle];
+    return [value, searchChangeHandle, optionSelectHandle, compositionStartHandle, compositionEndHandle];
 }

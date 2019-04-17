@@ -1,4 +1,4 @@
-import { SelectFilter, OptionConfig, SelectedValue, OptionProps } from "xy-select/es/interface";
+import { OptionConfig, SelectFilter } from "xy-select/es/interface";
 
 export interface CustomItemProps {
     id: number;

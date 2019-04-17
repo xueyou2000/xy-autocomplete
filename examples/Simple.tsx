@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AutoComplete from "../src";
 import { CustomItemProps } from "../src/interface";
 import { OptGroup, Option } from "xy-select";
@@ -63,18 +63,20 @@ const mockData = [
 ];
 
 export default function() {
+    const [data, setData] = useState([]);
+
     function searchHandle(val: string) {
-        console.log("onSearch: ", val);
+        if (!val) {
+            setData([]);
+        } else {
+            setData([val, val + "@126.com", val + "@gmail.com"]);
+        }
     }
 
     return (
         <div>
             <h1>简单演示</h1>
-            <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />
-
-            <br />
-
-            <AutoComplete style={{ width: "180px" }} dataSource={mockData} backfill={true} onSearch={searchHandle} />
+            <AutoComplete style={{ width: "180px" }} delay={100} placeholder="请搜索商家" dataSource={data} onSearch={searchHandle} />
         </div>
     );
 }
