@@ -1,5 +1,15 @@
 import React from "react";
 import AutoComplete from "../src";
+import { CustomItemProps } from "../src/interface";
+import { OptGroup, Option } from "xy-select";
+
+function MySuggest({ id, source }: CustomItemProps) {
+    return (
+        <p>
+            {id}: {source.label}
+        </p>
+    );
+}
 
 const mockData = [
     { label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" },
@@ -54,15 +64,17 @@ const mockData = [
 
 export default function() {
     function searchHandle(val: string) {
-        console.log(val);
+        console.log("onSearch: ", val);
     }
 
     return (
         <div>
             <h1>简单演示</h1>
-            <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} onSearch={searchHandle} />
+            <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />
 
-            <AutoComplete dataSource={["a", "b", "c"]} />
+            <br />
+
+            <AutoComplete style={{ width: "180px" }} dataSource={mockData} backfill={true} onSearch={searchHandle} />
         </div>
     );
 }

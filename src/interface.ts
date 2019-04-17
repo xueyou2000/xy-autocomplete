@@ -58,6 +58,14 @@ export interface AutoCompleteInputProps {
      * 输入框change事件
      */
     onChange?: (value: string, event?: React.ChangeEvent<HTMLInputElement>) => void;
+    /**
+     * 开始输入中文
+     */
+    onCompositionStart?: (e: React.CompositionEvent<HTMLInputElement>) => void;
+    /**
+     * 输入中文完毕
+     */
+    onCompositionEnd?: (e: React.CompositionEvent<HTMLInputElement>) => void;
 }
 
 export interface AutoCompleteProps extends AutoCompleteInputProps {
@@ -88,13 +96,19 @@ export interface AutoCompleteProps extends AutoCompleteInputProps {
      */
     filter?: SelectFilter;
     /**
+     * 防抖毫秒
+     * 默认 500ms
+     * @description 关系到onSearch触发事件的频率
+     */
+    delay?: number;
+    /**
      * 数据源
      */
     dataSource?: OptionConfig[] | string[] | React.ReactNode;
     /**
      * 自定义渲染
      */
-    customItem?: React.FunctionComponentElement<React.ProviderProps<CustomItemProps>>;
+    customItem?: (props: CustomItemProps) => JSX.Element;
     /**
      * 改变回调
      * @description 搜索内容改变和选中建议选项都会触发
@@ -124,5 +138,5 @@ export interface SuggestProps {
     /**
      * 自定义渲染
      */
-    customItem?: React.FunctionComponentElement<React.ProviderProps<CustomItemProps>>;
+    customItem?: (props: CustomItemProps) => JSX.Element;
 }

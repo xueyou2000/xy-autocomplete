@@ -1,10 +1,38 @@
 import { AutoCompleteProps } from "@/interface";
-import { useControll } from "utils-hooks";
+import { useControll, useDebounceCallback } from "utils-hooks";
 import { OptionConfig } from "xy-select/es/interface";
+import { useRef } from "react";
 
-export default function useValue(props: AutoCompleteProps, setVisible: (v: boolean) => void, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>): [string, (val: string) => void, (val: string | number) => void] {
-    const { disabled, onChange } = props;
+type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void];
+
+export default function useValue(props: AutoCompleteProps, setVisible: (v: boolean) => void, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>): UseValueReturn {
+    const { backfill, disabled, onChange, onSelect, onSearch, delay = 500 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
+    const typingRef = useRef(false);
+
+    useDebounceCallback(
+        () => {
+            if (onSearch) {
+                if (backfill) {
+                    if (typingRef.current === false) {
+                        onSearch(value);
+                    }
+                } else {
+                    onSearch(value);
+                }
+            }
+        },
+        delay,
+        [value]
+    );
+
+    function compositionStartHandle(e: React.CompositionEvent<HTMLInputElement>) {
+        typingRef.current = true;
+    }
+
+    function compositionEndHandle(e: React.CompositionEvent<HTMLInputElement>) {
+        typingRef.current = false;
+    }
 
     function changeValue(val: string) {
         if (disabled) {
@@ -22,15 +50,15 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
      * 选中option
      * @param val
      */
-    function onSelect(val: string | number) {
+    function optionSelectHandle(val: string | number) {
         const cfg = cacheSelectCfg.current.get(val);
         const v = cfg.label || val + "";
         changeValue(v);
-        if (props.onSelect) {
-            props.onSelect(v, cfg);
+        if (onSelect) {
+            onSelect(v, cfg);
         }
         setVisible(false);
     }
 
-    return [value, changeValue, onSelect];
+    return [value, changeValue, optionSelectHandle, compositionStartHandle, compositionEndHandle];
 }
