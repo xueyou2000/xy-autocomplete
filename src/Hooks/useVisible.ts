@@ -6,7 +6,7 @@ type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, (e: R
 
 export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>): UseVisibleReturn {
     const { disabled, stretch = true, dataSource = [] } = props;
-    const [visible, setVisible] = useSelectVisible(innerRef, dropdownRef, disabled, stretch, ".autocompolete-inputbox input");
+    const [visible, setVisible] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
     const focusRef = useRef(false);
     const empty = !dataSource || (dataSource instanceof Array && dataSource.length <= 0);
 
