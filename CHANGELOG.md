@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.33 (Tue Apr 23 2019)
+
+-   增加`name`属性
+
 ## 0.0.32 (Sun Apr 21 2019)
 
 -   更新`xy-select`依赖版本

@@ -19,6 +19,10 @@ export interface AutoCompleteInputProps {
      */
     style?: React.CSSProperties;
     /**
+     * name
+     */
+    name?: string;
+    /**
      * 是否禁用
      */
     disabled?: boolean;
