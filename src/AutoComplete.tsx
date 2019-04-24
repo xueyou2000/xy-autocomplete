@@ -8,9 +8,11 @@ import useVisible from "./Hooks/useVisible";
 import { AutoCompleteProps } from "./interface";
 import Suggest from "./Suggest";
 
-export function AutoComplete(props: AutoCompleteProps) {
+export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: React.MutableRefObject<any>) => {
     const { prefixCls = "xy-autocomplete", className, popupClassName, stretch = true, style, backfill, children, filter, dataSource = [], empyPlaceholder, customItem, onChange, onSelect, onSearch, ...inputProps } = props;
-    const ref = useRef();
+    if (!ref) {
+        ref = useRef();
+    }
     const dropdownRef = useRef();
     const [visible, setVisible, handleFocus, handleBlur] = useVisible(props, ref, dropdownRef);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
@@ -51,6 +53,6 @@ export function AutoComplete(props: AutoCompleteProps) {
             </SelectContext.Provider>
         </div>
     );
-}
+});
 
 export default React.memo(AutoComplete);

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.34 (Wed Apr 24 2019)
+
+-   转发`ref`
+
 ## 0.0.33 (Tue Apr 23 2019)
 
 -   增加`name`属性
