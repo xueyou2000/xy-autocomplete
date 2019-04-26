@@ -1,7 +1,7 @@
 {
     "name": "xy-autocomplete",
-    "version": "0.0.34",
-    "description": "基于React的基础组件",
+    "version": "0.0.35",
+    "description": "基于React的联想输入组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
     "module": "es/index.js",
@@ -10,7 +10,7 @@
     "files": [
         "es",
         "dist",
-        "assets/*.css"
+        "assets"
     ],
     "scripts": {
         "test": "quick-react-scripts test",
@@ -56,9 +56,8 @@
         "classnames": "^2.2.6",
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
-        "utils-dom": "0.0.56",
-        "utils-hooks": "0.0.63",
-        "xy-select": "0.0.54"
+        "utils-hooks": "0.0.65",
+        "xy-select": "0.0.6"
     },
     "repository": {
         "type": "git",

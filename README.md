@@ -25,19 +25,20 @@
 
 ```sh
 # npm
-npm install --save xy-autocomplete
+npm install --save xy-autocomplete utils-hooks utils-dom xy-empty xy-select classnames
 
 # yarn
-yarn add xy-autocomplete
+yarn add xy-autocomplete utils-hooks utils-dom xy-empty xy-select classnames
 ```
 
 ## 使用
 
-```ts
+```tsx
 import React from "react";
 import ReactDOM from "react-dom";
 import AutoComplete from "xy-autocomplete";
-ReactDOM.render(<AutoComplete />, container);
+const mockData = [{ label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" }, { label: "Hot honey 首尔炸鸡（仙霞路）", value: "上海市长宁区淞虹路661号" }, { label: "新旺角茶餐厅", value: "上海市普陀区真北路988号创邑金沙谷6号楼113" }];
+ReactDOM.render(<AutoComplete dataSource={mockData} />, container);
 ```
 
 ## 开发
