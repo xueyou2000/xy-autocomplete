@@ -1,11 +1,11 @@
 import { AutoCompleteProps } from "@/interface";
 import { useControll, useDebounceCallback } from "utils-hooks";
 import { OptionConfig } from "xy-select/es/interface";
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 
 type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void];
 
-export default function useValue(props: AutoCompleteProps, setVisible: (v: boolean) => void, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>): UseValueReturn {
+export default function useValue(props: AutoCompleteProps, setVisible: (v: boolean) => void, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>, align: Function): UseValueReturn {
     const { backfill, disabled, onChange, onSelect, onSearch, delay = 500 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
     const typingRef = useRef(false);
@@ -51,6 +51,11 @@ export default function useValue(props: AutoCompleteProps, setVisible: (v: boole
         searchRef.current = val;
         changeValue(val);
     }
+
+    useLayoutEffect(() => {
+        // 搜索改变会影响推荐列表的数量, 所以需要重新对齐
+        align();
+    }, [value]);
 
     /**
      * 选中option

@@ -62,7 +62,7 @@ const mockData = [
     { label: "南拳妈妈龙虾盖浇饭", value: "普陀区金沙江路1699号鑫乐惠美食广场A13" }
 ];
 
-export default function() {
+export default function () {
     const [data, setData] = useState([]);
 
     function searchHandle(val: string) {
@@ -76,7 +76,7 @@ export default function() {
     return (
         <div>
             <h1>简单演示</h1>
-            <AutoComplete style={{ width: "180px" }} backfill={true} onSearch={val => console.log('onSearch: ' + val)} placeholder="请搜索商家" dataSource={mockData} />
+            <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />
         </div>
     );
 }

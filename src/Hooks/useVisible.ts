@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import { useVisible as useSelectVisible } from "xy-select";
 import { AutoCompleteProps } from "../interface";
 
-type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, (e: React.FocusEvent<HTMLInputElement>) => void, (e: React.FocusEvent<HTMLInputElement>) => void];
+type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, (e: React.FocusEvent<HTMLInputElement>) => void, (e: React.FocusEvent<HTMLInputElement>) => void, Function];
 
 export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>): UseVisibleReturn {
     const { disabled, stretch = true, dataSource = [] } = props;
-    const [visible, setVisible] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
+    const [visible, setVisible, _, align] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
     const focusRef = useRef(false);
     const empty = !dataSource || (dataSource instanceof Array && dataSource.length <= 0);
 
@@ -33,5 +33,5 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
         }
     }
 
-    return [visible, setVisible, handleFocus, handleBlur];
+    return [visible, setVisible, handleFocus, handleBlur, align];
 }
