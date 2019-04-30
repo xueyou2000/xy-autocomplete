@@ -1,6 +1,8 @@
 import React from "react";
 import AutoComplete from "xy-autocomplete";
 import "xy-autocomplete/assets/index";
+import { TextArea } from "xy-input";
+import "xy-input/assets/index.css";
 
 const mockData = [
     { label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" },
@@ -54,5 +56,9 @@ const mockData = [
 ];
 
 export default function() {
-    return <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />;
+    return (
+        <AutoComplete style={{ width: "250px" }} dataSource={mockData}>
+            <TextArea autosize={{ minRows: 2, maxRows: 4 }} />
+        </AutoComplete>
+    );
 }

@@ -13,8 +13,10 @@
         "lib": ["dom", "esnext"],
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         "paths": {
-            "@/*": ["src/*"]
+            "xy-autocomplete": ["src/index.tsx"],
+            "xy-autocomplete/*": ["src/*"]
         },
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
@@ -22,6 +24,5 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
     },
-    "include": ["src"],
-    "exclude": ["node_modules", ".awcache"]
+    "include": ["src"]
 }

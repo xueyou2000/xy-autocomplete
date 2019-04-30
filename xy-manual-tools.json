@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Simple",
+        "title": "基本使用",
+        "desc": "使用固定数据源作为建议内容。"
+    },
+    {
+        "name": "OnSearch",
+        "title": "搜索事件",
+        "desc": "配合搜索事件，动态改变建议内容。"
+    },
+    {
+        "name": "CustomizeInput",
+        "title": "自定义输入框",
+        "desc": "提供 children 来自定义输入框, 输入框必须兼容AutoCompleteInput接口。"
+    },
+    {
+        "name": "CustomizeOptions",
+        "title": "自定义选项",
+        "desc": "当 dataSource 类型为节点元素时， 使用子元素作用建议内容。"
+    },
+    {
+        "name": "CutomizeItem",
+        "title": "自定义选项渲染",
+        "desc": "提供 customItem 自定义渲染建议选项。"
+    }
+]

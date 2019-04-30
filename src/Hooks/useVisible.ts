@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 import { useVisible as useSelectVisible } from "xy-select";
 import { AutoCompleteProps } from "../interface";
 
-type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, (e: React.FocusEvent<HTMLInputElement>) => void, (e: React.FocusEvent<HTMLInputElement>) => void, Function];
+type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, (e: React.FocusEvent<HTMLInputElement>) => void, () => void, Function];
 
-export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>): UseVisibleReturn {
-    const { disabled, stretch = true, dataSource = [] } = props;
+export default function useVisible(ref: React.MutableRefObject<any>, props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>): UseVisibleReturn {
+    const { disabled, stretch = true, dataSource = [], children } = props;
     const [visible, setVisible, _, align] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
     const focusRef = useRef(false);
     const empty = !dataSource || (dataSource instanceof Array && dataSource.length <= 0);
@@ -14,8 +14,6 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
     useEffect(() => {
         if (focusRef.current) {
             handleFocus();
-        } else {
-            handleBlur();
         }
     }, [dataSource]);
 
@@ -26,12 +24,19 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
         }
     }
 
-    function handleBlur() {
+    function hide() {
         focusRef.current = false;
+        const element = ref.current as HTMLElement;
+        if (element) {
+            const input = element.querySelector(children ? ".autocompolete-inputbox" : ".xy-autocomplete-inputwrap-input") as HTMLElement;
+            if (input) {
+                input.focus();
+            }
+        }
         if (visible) {
             setVisible(false);
         }
     }
 
-    return [visible, setVisible, handleFocus, handleBlur, align];
+    return [visible, setVisible, handleFocus, hide, align];
 }

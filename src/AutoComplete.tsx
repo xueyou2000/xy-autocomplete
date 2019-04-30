@@ -14,9 +14,9 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
         ref = useRef();
     }
     const dropdownRef = useRef();
-    const [visible, setVisible, handleFocus, handleBlur, align] = useVisible(props, ref, dropdownRef);
+    const [visible, setVisible, handleFocus, hide, align] = useVisible(ref, props, ref, dropdownRef);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
-    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, setVisible, cacheSelectCfg, align);
+    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, handleFocus as any, cacheSelectCfg, align, hide);
     const [focusValue, handleKeyDown, scrollwrapRef] = useNnavigate(options, value, onOptionSelect, setVisible);
     const classString = classNames(prefixCls, className, {
         [`${prefixCls}-visible`]: false,
@@ -31,7 +31,6 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
             onKeyDown: handleKeyDown,
             onChange: searchChangeHandle,
             onFocus: handleFocus,
-            onBlur: handleBlur,
             onCompositionStart: compositionStartHandle,
             onCompositionEnd: compositionEndHandle
         };

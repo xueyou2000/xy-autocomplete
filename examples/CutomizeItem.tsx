@@ -1,6 +1,8 @@
 import React from "react";
 import AutoComplete from "xy-autocomplete";
 import "xy-autocomplete/assets/index";
+import { CustomItemProps } from "../src/interface";
+import "./index.scss";
 
 const mockData = [
     { label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" },
@@ -53,6 +55,15 @@ const mockData = [
     { label: "南拳妈妈龙虾盖浇饭", value: "普陀区金沙江路1699号鑫乐惠美食广场A13" }
 ];
 
+function MySuggest({ id, source }: CustomItemProps) {
+    return (
+        <div className="costomize-option">
+            <p className="label">{source.label}</p>
+            <span className="value">{source.value}</span>
+        </div>
+    );
+}
+
 export default function() {
-    return <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />;
+    return <AutoComplete style={{ width: "400px" }} customItem={MySuggest} placeholder="请搜索商家" dataSource={mockData} />;
 }
