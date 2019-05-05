@@ -11,9 +11,9 @@ import Suggest from "./Suggest";
 export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: React.MutableRefObject<any>) => {
     const { prefixCls = "xy-autocomplete", className, popupClassName, stretch = true, style, backfill, children, filter, dataSource = [], empyPlaceholder, customItem, onChange, onSelect, onSearch, ...inputProps } = props;
     if (!ref) {
-        ref = useRef();
+        ref = useRef(null);
     }
-    const dropdownRef = useRef();
+    const dropdownRef = useRef(null);
     const [visible, setVisible, handleFocus, hide, align] = useVisible(ref, props, ref, dropdownRef);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
     const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, handleFocus as any, cacheSelectCfg, align, hide);

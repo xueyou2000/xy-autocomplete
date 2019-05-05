@@ -1,6 +1,6 @@
 import React from "react";
-import AutoComplete from "xy-autocomplete";
-import "xy-autocomplete/assets/index";
+import AutoComplete from "../src";
+import "../src/assets/index";
 import { Option, OptGroup } from "xy-select";
 import "xy-select/assets/index.css";
 import "xy-input/assets/index.css";

@@ -1,6 +1,6 @@
 import React from "react";
-import AutoComplete from "xy-autocomplete";
-import "xy-autocomplete/assets/index";
+import AutoComplete from "../src";
+import "../src/assets/index";
 import { CustomItemProps } from "../src/interface";
 import "./index.scss";
 

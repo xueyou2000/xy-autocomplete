@@ -10,7 +10,7 @@ export default function useValue(props: AutoCompleteProps, show: () => void, cac
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
     const typingRef = useRef(false);
     const searchRef = useRef("");
-    const lastPicker = useRef<string>();
+    const lastPicker = useRef<string>(null);
 
     useDebounceCallback(
         () => {

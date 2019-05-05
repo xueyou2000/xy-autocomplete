@@ -1,6 +1,6 @@
 import React from "react";
-import AutoComplete from "xy-autocomplete";
-import "xy-autocomplete/assets/index";
+import AutoComplete from "../src";
+import "../src/assets/index";
 
 const mockData = [
     { label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" },
