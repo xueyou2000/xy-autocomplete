@@ -5,12 +5,11 @@ import { useRef, useLayoutEffect } from "react";
 
 type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void];
 
-export default function useValue(props: AutoCompleteProps, show: () => void, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>, align: Function, hide: () => void): UseValueReturn {
-    const { backfill, disabled, onChange, onSelect, onSearch, delay = 500 } = props;
+export default function useValue(props: AutoCompleteProps, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>, align: Function, onPicker: (val: string) => void, lastValue: React.MutableRefObject<any>): UseValueReturn {
+    const { backfill, disabled, onChange, onSelect, onSearch, delay = 200 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
     const typingRef = useRef(false);
     const searchRef = useRef("");
-    const lastPicker = useRef<string>(null);
 
     useDebounceCallback(
         () => {
@@ -40,6 +39,7 @@ export default function useValue(props: AutoCompleteProps, show: () => void, cac
         if (disabled) {
             return;
         }
+        lastValue.current = val;
         if (!isControll) {
             setValue(val);
         }
@@ -53,28 +53,22 @@ export default function useValue(props: AutoCompleteProps, show: () => void, cac
         changeValue(val);
     }
 
+    // 搜索改变会影响推荐列表的数量, 所以需要重新对齐
     useLayoutEffect(() => {
-        // 搜索改变会影响推荐列表的数量, 所以需要重新对齐
         align();
-        // 重新判断是否需要显示下拉列表
-        if (value && value !== lastPicker.current) {
-            show();
-            lastPicker.current = null;
-        }
     }, [value]);
 
     /**
      * 选中option
-     * @param val
+     * @param _value
      */
-    function optionSelectHandle(val: string | number) {
-        const cfg = cacheSelectCfg.current.get(val);
-        const v = cfg.label || val + "";
-        lastPicker.current = v;
-        hide();
-        changeValue(v);
+    function optionSelectHandle(_value: string | number) {
+        const optionCfg = cacheSelectCfg.current.get(_value);
+        const val = optionCfg.label || _value + "";
+        onPicker(val);
+        changeValue(val);
         if (onSelect) {
-            onSelect(v, cfg);
+            onSelect(val, optionCfg);
         }
     }
 

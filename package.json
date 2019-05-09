@@ -1,6 +1,6 @@
 {
     "name": "xy-autocomplete",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "基于React的联想输入组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
@@ -41,10 +41,10 @@
         "@types/node": "11.9.4",
         "@types/react": "16.8.2",
         "@types/react-dom": "16.8.2",
-        "quick-react-scripts": "1.1.4",
+        "quick-react-scripts": "1.1.8",
         "react-testing-library": "^6.0.0",
         "xy-input": "^0.0.7",
-        "xy-manual-tools": "0.0.9"
+        "xy-manual-tools": "0.1.2"
     },
     "dependencies": {
         "classnames": "^2.2.6",

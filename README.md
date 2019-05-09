@@ -49,8 +49,8 @@ ReactDOM.render(<AutoComplete dataSource={mockData} />, container);
 | stretch         | 下拉列表是否宽度与输入框宽度对齐             | boolean                                        | true   |
 | backfill        | 是否键盘输入完再回填                         | boolean                                        | false  |
 | empyPlaceholder | 内容占位符, 下拉内容为空时提示文本           | string                                         | 无     |
-| filter          | 过滤 option 本                               | (cfg: OptionConfig, search: string) => boolean | 无     |
-| delay           | 防抖毫秒                                     | number                                         | 500    |
+| filter          | 过滤 option 本, 返回 true 则过滤             | (cfg: OptionConfig, search: string) => boolean | 无     |
+| delay           | 防抖毫秒                                     | number                                         | 200    |
 | dataSource      | 数据源                                       | OptionConfig[] / string[] / React.ReactNode    | 无     |
 | customItem      | 自定义渲染                                   | (props: CustomItemProps) => JSX.Element        | 无     |
 | onChange        | 改变回调, 搜索内容改变和选中建议选项都会触发 | (value: string) => void                        | 无     |

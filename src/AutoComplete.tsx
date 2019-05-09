@@ -14,9 +14,10 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
         ref = useRef(null);
     }
     const dropdownRef = useRef(null);
-    const [visible, setVisible, handleFocus, hide, align] = useVisible(ref, props, ref, dropdownRef);
+    const lastValue = useRef(null);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
-    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, handleFocus as any, cacheSelectCfg, align, hide);
+    const [visible, setVisible, handleFocus, handleBlur, whenPickerHiden, align] = useVisible(props, ref, dropdownRef, lastValue);
+    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, cacheSelectCfg, align, whenPickerHiden, lastValue);
     const [focusValue, handleKeyDown, scrollwrapRef] = useNnavigate(options, value, onOptionSelect, setVisible);
     const classString = classNames(prefixCls, className, {
         [`${prefixCls}-visible`]: false,
@@ -30,6 +31,7 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
             value,
             onKeyDown: handleKeyDown,
             onChange: searchChangeHandle,
+            onBlur: handleBlur,
             onFocus: handleFocus,
             onCompositionStart: compositionStartHandle,
             onCompositionEnd: compositionEndHandle
@@ -45,7 +47,7 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
     return (
         <div className={classString} style={style} ref={ref}>
             {renderInput()}
-            <SelectContext.Provider value={{ value, filter, search: filter ? null : value, onOptionAdd, onOptionRemove, onSelect: onOptionSelect, focusValue }}>
+            <SelectContext.Provider value={{ value, filter, search: "filter" in props ? null : value, onOptionAdd, onOptionRemove, onSelect: onOptionSelect, focusValue }}>
                 <Dropdown prefixCls="xy-select" popupClassName={popupClassName} visible={visible} placeholder={empyPlaceholder} dropdownRef={dropdownRef} scrollwrapRef={scrollwrapRef}>
                     <Suggest prefixCls={prefixCls} suggestions={dataSource} customItem={customItem} />
                 </Dropdown>

@@ -23,5 +23,10 @@
         "name": "CutomizeItem",
         "title": "自定义选项渲染",
         "desc": "提供 customItem 自定义渲染建议选项。"
+    },
+    {
+        "name": "Controll",
+        "title": "固定选项",
+        "desc": "并且通过设置 filter 属性禁止默认的搜索过滤。"
     }
 ]

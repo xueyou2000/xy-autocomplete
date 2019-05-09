@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.0.6 (Wed May 08 2019)
+
+-   修复下拉列表的折叠，打开逻辑
+-   设置 `filter` 属性禁用默认的搜索过滤
+
 ## 0.0.5 (Sun May 05 2019)
 
 -   更新`xy-manual-tools`, 修复编译 demo
