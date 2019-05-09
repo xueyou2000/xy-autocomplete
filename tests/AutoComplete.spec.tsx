@@ -21,6 +21,14 @@ describe("AutoComplete", () => {
         expect(input === document.activeElement).toBeTruthy();
     });
 
+    test("OnBlur", () => {
+        const fn = jest.fn();
+        const wrapper = render(<AutoComplete autoFocus={true} placeholder="请搜索" onBlur={fn} />);
+        const input = wrapper.getByPlaceholderText("请搜索");
+        fireEvent.blur(input);
+        expect(fn).toBeCalled();
+    });
+
     test("When Input Chinese Complete Trigger onSearch", () => {
         const onSearch = jest.fn();
         const wrapper = render(<AutoComplete backfill={true} delay={0} placeholder="请搜索" onSearch={onSearch} />);
