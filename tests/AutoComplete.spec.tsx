@@ -56,6 +56,6 @@ describe("AutoComplete", () => {
         fireEvent.click(option);
         expect(fn).toBeCalled();
         expect(fn.mock.calls[0][0]).toBe("b1");
-        expect(fn.mock.calls[0][1]).toEqual({ label: "b1", value: "b1", disabled: false, filtered: false });
+        expect(fn.mock.calls[0][1]).toEqual({ label: "b1", value: "b1", disabled: false, filtered: undefined });
     });
 });
