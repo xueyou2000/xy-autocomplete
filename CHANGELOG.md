@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.0.9 (Wed May 08 2019)
+
+-   更换下拉列表动画
+-   让关闭动画更加流畅, 动画关闭后再让 options 数组变化
+
 ## 0.0.8 (Wed May 08 2019)
 
 -   更新`xy-select`依赖, 阻止`option`冒泡

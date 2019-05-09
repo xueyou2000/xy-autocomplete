@@ -17,7 +17,7 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
     const lastValue = useRef(null);
     const [options, onOptionAdd, onOptionRemove, _, cacheSelectCfg] = useOptions(false);
     const [visible, setVisible, handleFocus, handleBlur, whenPickerHiden, align] = useVisible(props, ref, dropdownRef, lastValue);
-    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle] = useValue(props, cacheSelectCfg, align, whenPickerHiden, lastValue);
+    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle, searchRef] = useValue(props, cacheSelectCfg, align, whenPickerHiden, lastValue, visible);
     const [focusValue, handleKeyDown, scrollwrapRef] = useNnavigate(options, value, onOptionSelect, setVisible);
     const classString = classNames(prefixCls, className, {
         [`${prefixCls}-visible`]: false,
@@ -47,7 +47,7 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
     return (
         <div className={classString} style={style} ref={ref}>
             {renderInput()}
-            <SelectContext.Provider value={{ value, filter, search: "filter" in props ? null : value, onOptionAdd, onOptionRemove, onSelect: onOptionSelect, focusValue }}>
+            <SelectContext.Provider value={{ value, filter, search: "filter" in props ? null : searchRef.current, onOptionAdd, onOptionRemove, onSelect: onOptionSelect, focusValue }}>
                 <Dropdown prefixCls="xy-select" popupClassName={popupClassName} visible={visible} placeholder={empyPlaceholder} dropdownRef={dropdownRef} scrollwrapRef={scrollwrapRef}>
                     <Suggest prefixCls={prefixCls} suggestions={dataSource} customItem={customItem} />
                 </Dropdown>

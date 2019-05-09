@@ -1,6 +1,6 @@
 {
     "name": "xy-autocomplete",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "基于React的联想输入组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
@@ -51,7 +51,7 @@
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
         "utils-hooks": "0.0.66",
-        "xy-select": "1.0.4"
+        "xy-select": "1.0.5"
     },
     "repository": {
         "type": "git",

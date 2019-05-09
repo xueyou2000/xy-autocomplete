@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import { useVisible as useSelectVisible } from "xy-select";
 import { AutoCompleteProps } from "../interface";
 
-type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, () => void, () => void, (val: string) => void, Function];
+type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, () => void, () => void, (val: string, callback?: Function) => void, Function];
 
 export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>, lastValue: React.MutableRefObject<any>): UseVisibleReturn {
     const { disabled, stretch = true, dataSource = [], onBlur } = props;
@@ -32,7 +32,7 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
         }
     }
 
-    function whenPickerHiden(val: string) {
+    function whenPickerHiden(val: string, callback?: Function) {
         lastPicker.current = val;
         setVisible(false);
     }

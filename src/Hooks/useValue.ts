@@ -1,15 +1,23 @@
 import { AutoCompleteProps } from "../interface";
 import { useControll, useDebounceCallback } from "utils-hooks";
 import { OptionConfig } from "xy-select/es/interface";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 
-type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void];
+type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, React.MutableRefObject<string>];
 
-export default function useValue(props: AutoCompleteProps, cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>, align: Function, onPicker: (val: string) => void, lastValue: React.MutableRefObject<any>): UseValueReturn {
+export default function useValue(
+    props: AutoCompleteProps,
+    cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>,
+    align: Function,
+    onPicker: (val: string, callback?: Function) => void,
+    lastValue: React.MutableRefObject<any>,
+    visible: boolean
+): UseValueReturn {
     const { backfill, disabled, onChange, onSelect, onSearch, delay = 200 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
     const typingRef = useRef(false);
     const searchRef = useRef("");
+    const pickerRef = useRef(null);
 
     useDebounceCallback(
         () => {
@@ -53,10 +61,18 @@ export default function useValue(props: AutoCompleteProps, cacheSelectCfg: React
         changeValue(val);
     }
 
-    // 搜索改变会影响推荐列表的数量, 所以需要重新对齐
+    // Tips: 搜索改变会影响推荐列表的数量, 所以需要重新对齐
     useLayoutEffect(() => {
         align();
     }, [value]);
+
+    // Tips: 选择option后，等待下拉列表关闭动画完毕再设置search, 避免下拉列表内容和高度变化了，再执行动画
+    useLayoutEffect(() => {
+        if (pickerRef.current) {
+            searchRef.current = pickerRef.current;
+            pickerRef.current = null;
+        }
+    }, [visible]);
 
     /**
      * 选中option
@@ -65,6 +81,7 @@ export default function useValue(props: AutoCompleteProps, cacheSelectCfg: React
     function optionSelectHandle(_value: string | number) {
         const optionCfg = cacheSelectCfg.current.get(_value);
         const val = optionCfg.label || _value + "";
+        pickerRef.current = val;
         onPicker(val);
         changeValue(val);
         if (onSelect) {
@@ -72,5 +89,5 @@ export default function useValue(props: AutoCompleteProps, cacheSelectCfg: React
         }
     }
 
-    return [value, searchChangeHandle, optionSelectHandle, compositionStartHandle, compositionEndHandle];
+    return [value, searchChangeHandle, optionSelectHandle, compositionStartHandle, compositionEndHandle, searchRef];
 }

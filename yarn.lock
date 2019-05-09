@@ -9063,10 +9063,10 @@ xy-model@^0.0.2:
     utils-hooks "^0.0.65"
     xy-messagebox "^0.0.4"
 
-xy-select@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npm.taobao.org/xy-select/download/xy-select-1.0.4.tgz#ad55684afc6e0b7c58ccea244eacf3b9322b146a"
-  integrity sha1-rVVoSvxuC3xYzOokTqzzuTIrFGo=
+xy-select@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/xy-select/download/xy-select-1.0.5.tgz#29ed0471746bd1d193d9993a9eabc4166f458d8c"
+  integrity sha1-Ke0EcXRr0dGT2Zk6nqvEFm9FjYw=
   dependencies:
     classnames "^2.2.6"
     react "^16.8.2"
