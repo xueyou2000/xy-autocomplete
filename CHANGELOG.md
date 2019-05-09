@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.8 (Wed May 08 2019)
+
+-   更新`xy-select`依赖, 阻止`option`冒泡
+
 ## 0.0.7 (Wed May 08 2019)
 
 -   修复`onBlur`事件的转发
