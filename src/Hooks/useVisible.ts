@@ -5,7 +5,7 @@ import { AutoCompleteProps } from "../interface";
 type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, () => void, () => void, (val: string) => void, Function];
 
 export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>, lastValue: React.MutableRefObject<any>): UseVisibleReturn {
-    const { disabled, stretch = true, dataSource = [] } = props;
+    const { disabled, stretch = true, dataSource = [], onBlur } = props;
     const [visible, setVisible, _, align] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
     const lastPicker = useRef(null);
     const focusRef = useRef(false);
@@ -37,8 +37,11 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
         setVisible(false);
     }
 
-    function handleBlur() {
+    function handleBlur(e?: any) {
         focusRef.current = false;
+        if (onBlur) {
+            onBlur(e);
+        }
     }
 
     return [visible, setVisible, handleFocus, handleBlur, whenPickerHiden, align];
