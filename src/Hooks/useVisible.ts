@@ -1,12 +1,11 @@
-import { useEffect, useRef, useLayoutEffect } from "react";
-import { useVisible as useSelectVisible } from "xy-select";
+import { useEffect, useRef, useState } from "react";
 import { AutoCompleteProps } from "../interface";
 
-type UseVisibleReturn = [boolean, (v: boolean, isAlign?: boolean) => void, () => void, () => void, (val: string, callback?: Function) => void, Function];
+type UseVisibleReturn = [boolean, (v: boolean) => void, () => void, () => void, (val: string) => void];
 
-export default function useVisible(props: AutoCompleteProps, innerRef: React.MutableRefObject<any>, dropdownRef: React.MutableRefObject<any>, lastValue: React.MutableRefObject<any>): UseVisibleReturn {
-    const { disabled, stretch = true, dataSource = [], onBlur } = props;
-    const [visible, setVisible, _, align] = useSelectVisible(innerRef, dropdownRef, disabled, stretch);
+export default function useVisible(props: AutoCompleteProps, lastValue: React.MutableRefObject<any>): UseVisibleReturn {
+    const { dataSource = [], onBlur } = props;
+    const [visible, setVisible] = useState(false);
     const lastPicker = useRef(null);
     const focusRef = useRef(false);
     const empty = !dataSource || (dataSource instanceof Array && dataSource.length <= 0);
@@ -28,21 +27,22 @@ export default function useVisible(props: AutoCompleteProps, innerRef: React.Mut
         }
         if (!empty && !props.disabled) {
             focusRef.current = true;
-            setVisible(true, true);
+            setVisible(true);
         }
     }
 
-    function whenPickerHiden(val: string, callback?: Function) {
+    function whenPickerHiden(val: string) {
         lastPicker.current = val;
         setVisible(false);
     }
 
     function handleBlur(e?: any) {
         focusRef.current = false;
+        setVisible(false);
         if (onBlur) {
             onBlur(e);
         }
     }
 
-    return [visible, setVisible, handleFocus, handleBlur, whenPickerHiden, align];
+    return [visible, setVisible, handleFocus, handleBlur, whenPickerHiden];
 }

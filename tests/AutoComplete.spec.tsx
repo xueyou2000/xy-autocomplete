@@ -45,7 +45,7 @@ describe("AutoComplete", () => {
 
     test("Filter Option", () => {
         const wrapper = render(<AutoComplete filter={(cfg) => cfg.label.indexOf("1") !== -1} dataSource={["a", "b", "c", "a1", "b1", "c1"]} />);
-        const options = document.body.querySelectorAll(".xy-option");
+        const options = document.body.querySelectorAll(".xy-option:not(.filtered)");
         expect([].map.call(options, (x) => x.textContent)).toEqual(["a", "b", "c"]);
     });
 

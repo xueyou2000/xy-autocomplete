@@ -8,7 +8,7 @@ type UseValueReturn = [string, (val: string) => void, (val: string | number) => 
 export default function useValue(
     props: AutoCompleteProps,
     cacheSelectCfg: React.MutableRefObject<Map<any, OptionConfig>>,
-    align: Function,
+    align: React.MutableRefObject<Function>,
     onPicker: (val: string, callback?: Function) => void,
     lastValue: React.MutableRefObject<any>,
     visible: boolean
@@ -63,7 +63,9 @@ export default function useValue(
 
     // Tips: 搜索改变会影响推荐列表的数量, 所以需要重新对齐
     useLayoutEffect(() => {
-        align();
+        if (align.current) {
+            align.current(false);
+        }
     }, [value]);
 
     // Tips: 选择option后，等待下拉列表关闭动画完毕再设置search, 避免下拉列表内容和高度变化了，再执行动画
