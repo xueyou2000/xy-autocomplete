@@ -1,6 +1,6 @@
 {
     "name": "xy-autocomplete",
-    "version": "0.0.91",
+    "version": "0.0.93",
     "description": "基于React的联想输入组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
@@ -36,23 +36,23 @@
         "registry": "http://registry.npmjs.org/"
     },
     "devDependencies": {
-        "@types/classnames": "^2.2.7",
-        "@types/jest": "24.0.6",
-        "@types/node": "11.9.4",
-        "@types/react": "16.8.2",
-        "@types/react-dom": "16.8.2",
-        "quick-react-scripts": "1.1.9",
-        "react-testing-library": "^6.0.0",
-        "xy-input": "^0.0.7",
-        "xy-manual-tools": "0.1.4"
+        "@testing-library/react": "^9.1.4",
+        "@types/classnames": "^2.2.9",
+        "@types/jest": "24.0.18",
+        "@types/node": "12.7.4",
+        "@types/react": "16.9.2",
+        "@types/react-dom": "16.9.0",
+        "quick-react-scripts": "^1.2.3",
+        "xy-input": "^0.0.92",
+        "xy-manual-tools": "^0.1.4"
     },
     "dependencies": {
         "classnames": "^2.2.6",
-        "react": "^16.8.2",
-        "react-dom": "^16.8.2",
-        "utils-hooks": "0.0.66",
-        "xy-select": "1.0.8",
-        "xy-trigger": "0.0.94"
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "utils-hooks": "^0.0.71",
+        "xy-select": "^1.0.87",
+        "xy-trigger": "^0.0.94"
     },
     "repository": {
         "type": "git",
@@ -60,7 +60,7 @@
     },
     "jest": {
         "transformIgnorePatterns": [
-            "<rootDir>/node_modules/(?!(utils-hooks|utils-dom|xy-select|xy-empty|xy-trigger))"
+            "<rootDir>/node_modules/(?!(utils-*|xy-*))"
         ]
     }
 }

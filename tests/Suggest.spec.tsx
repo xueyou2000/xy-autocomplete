@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "react-testing-library";
+import { render, fireEvent } from "@testing-library/react";
 import Suggest from "../src/Suggest";
 import { OptionConfig } from "xy-select/es/interface";
 import { CustomItemProps } from "../src/interface";
@@ -19,7 +19,7 @@ describe("Suggest", () => {
         const wrapper = render(
             <OptionsContext.Provider value={{ onOptionAdd: addFn, onOptionRemove: removeFn }}>
                 <Suggest suggestions={["a", "b", "c"]} />
-            </OptionsContext.Provider>
+            </OptionsContext.Provider>,
         );
         const options = wrapper.container.querySelectorAll(".xy-option");
         expect([].map.call(options, (x) => x.textContent)).toEqual(["a", "b", "c"]);
@@ -31,21 +31,21 @@ describe("Suggest", () => {
         const cfgs: OptionConfig[] = [
             {
                 label: "苹果",
-                value: "pg"
+                value: "pg",
             },
             {
                 label: "西瓜",
-                value: "xg"
+                value: "xg",
             },
             {
                 label: "香蕉",
-                value: "xiangjiao"
-            }
+                value: "xiangjiao",
+            },
         ];
         const wrapper = render(
             <OptionsContext.Provider value={{ onOptionAdd: addFn, onOptionRemove: removeFn }}>
                 <Suggest suggestions={cfgs} />
-            </OptionsContext.Provider>
+            </OptionsContext.Provider>,
         );
         const options = wrapper.container.querySelectorAll(".xy-option");
         expect([].map.call(options, (x) => x.textContent)).toEqual(["苹果", "西瓜", "香蕉"]);
@@ -65,7 +65,7 @@ describe("Suggest", () => {
         const wrapper = render(
             <OptionsContext.Provider value={{ onOptionAdd: addFn, onOptionRemove: removeFn }}>
                 <Suggest customItem={MySuggest} suggestions={["a", "b", "c"]} />
-            </OptionsContext.Provider>
+            </OptionsContext.Provider>,
         );
         const opt = wrapper.getByText("1: b");
         expect(opt).toBeDefined();

@@ -25,7 +25,7 @@
 
 ```bash
 # yarn
-yarn add xy-autocomplete utils-hooks utils-dom xy-empty xy-select classnames
+yarn add xy-autocomplete
 ```
 
 ## 使用例子
@@ -34,7 +34,11 @@ yarn add xy-autocomplete utils-hooks utils-dom xy-empty xy-select classnames
 import React from "react";
 import ReactDOM from "react-dom";
 import AutoComplete from "xy-autocomplete";
-const mockData = [{ label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" }, { label: "Hot honey 首尔炸鸡（仙霞路）", value: "上海市长宁区淞虹路661号" }, { label: "新旺角茶餐厅", value: "上海市普陀区真北路988号创邑金沙谷6号楼113" }];
+const mockData = [
+    { label: "三全鲜食（北新泾店）", value: "长宁区新渔路144号" },
+    { label: "Hot honey 首尔炸鸡（仙霞路）", value: "上海市长宁区淞虹路661号" },
+    { label: "新旺角茶餐厅", value: "上海市普陀区真北路988号创邑金沙谷6号楼113" },
+];
 ReactDOM.render(<AutoComplete dataSource={mockData} />, container);
 ```
 

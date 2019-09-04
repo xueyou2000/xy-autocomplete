@@ -3,7 +3,14 @@ import { useControll, useDebounceCallback } from "utils-hooks";
 import { OptionConfig } from "xy-select/es/interface";
 import { useRef, useLayoutEffect, useState } from "react";
 
-type UseValueReturn = [string, (val: string) => void, (val: string | number) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, (e: React.CompositionEvent<HTMLInputElement>) => void, React.MutableRefObject<string>];
+type UseValueReturn = [
+    string,
+    (val: string) => void,
+    (val: string | number) => void,
+    (e: React.CompositionEvent<HTMLInputElement>) => void,
+    (e: React.CompositionEvent<HTMLInputElement>) => void,
+    React.MutableRefObject<string>,
+];
 
 export default function useValue(
     props: AutoCompleteProps,
@@ -11,7 +18,7 @@ export default function useValue(
     align: React.MutableRefObject<Function>,
     onPicker: (val: string, callback?: Function) => void,
     lastValue: React.MutableRefObject<any>,
-    visible: boolean
+    visible: boolean,
 ): UseValueReturn {
     const { backfill, disabled, onChange, onSelect, onSearch, delay = 200 } = props;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue");
@@ -32,7 +39,7 @@ export default function useValue(
             }
         },
         delay,
-        [searchRef.current]
+        [searchRef.current],
     );
 
     function compositionStartHandle(e: React.CompositionEvent<HTMLInputElement>) {
@@ -82,7 +89,7 @@ export default function useValue(
      */
     function optionSelectHandle(_value: string | number) {
         const optionCfg = cacheSelectCfg.current.get(_value);
-        const val = optionCfg.label || _value + "";
+        const val = (optionCfg && optionCfg.label) || (_value === undefined || _value === null ? null : _value + "");
         pickerRef.current = val;
         onPicker(val);
         changeValue(val);
