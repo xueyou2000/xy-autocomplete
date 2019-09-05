@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import AutoComplete from "../src";
 import "../src/assets/index";
 
@@ -50,9 +50,10 @@ const mockData = [
     { label: "红辣椒麻辣烫", value: "上海市长宁区天山西路492号" },
     { label: "(小杨生煎)西郊百联餐厅", value: "长宁区仙霞西路88号百联2楼" },
     { label: "阳阳麻辣烫", value: "天山西路389号" },
-    { label: "南拳妈妈龙虾盖浇饭", value: "普陀区金沙江路1699号鑫乐惠美食广场A13" }
+    { label: "南拳妈妈龙虾盖浇饭", value: "普陀区金沙江路1699号鑫乐惠美食广场A13" },
 ];
 
 export default function() {
-    return <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} />;
+    const ref = useRef(null);
+    return <AutoComplete style={{ width: "180px" }} placeholder="请搜索商家" dataSource={mockData} ref={ref} onSearch={() => console.log(ref.current)} />;
 }

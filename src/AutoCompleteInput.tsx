@@ -1,14 +1,17 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useRef } from "react";
 import { useControll } from "utils-hooks";
 import { AutoCompleteInputProps } from "./interface";
 
-export function AutoCompleteInput(props: AutoCompleteInputProps) {
+export const AutoCompleteInput = React.forwardRef((props: AutoCompleteInputProps, ref: React.MutableRefObject<any>) => {
     const { prefixCls, className, style, disabled, onChange, ...rest } = props;
+    if (!ref) {
+        ref = useRef(null);
+    }
     const inputPrefixCls = `xy-autocomplete-inputwrap`;
     const [value, setValue, isControll] = useControll<string>(props, "value", "defaultValue", "");
     const classString = classNames(inputPrefixCls, className, {
-        [`${inputPrefixCls}-disabled`]: disabled
+        [`${inputPrefixCls}-disabled`]: disabled,
     });
 
     function changeHandle(event: React.ChangeEvent<HTMLInputElement>) {
@@ -30,11 +33,12 @@ export function AutoCompleteInput(props: AutoCompleteInputProps) {
                 onCompositionStart={(e) => null}
                 aria-disabled={disabled}
                 {...rest}
+                ref={ref}
                 {...(isControll ? { value: value || "" } : { defaultValue: value })}
                 onChange={changeHandle}
             />
         </div>
     );
-}
+});
 
 export default React.memo(AutoCompleteInput);

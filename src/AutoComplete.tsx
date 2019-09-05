@@ -14,7 +14,23 @@ const ACTION: TriggerAction[] = [];
 const POPUPALIGN = { overflow: { adjust: false, flip: true } };
 
 export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: React.MutableRefObject<any>) => {
-    const { prefixCls = "xy-autocomplete", className, popupClassName, stretch = true, style, backfill, children, filter, dataSource = [], empyPlaceholder, customItem, onChange, onSelect, onSearch, ...inputProps } = props;
+    const {
+        prefixCls = "xy-autocomplete",
+        className,
+        popupClassName,
+        stretch = true,
+        style,
+        backfill,
+        children,
+        filter,
+        dataSource = [],
+        empyPlaceholder,
+        customItem,
+        onChange,
+        onSelect,
+        onSearch,
+        ...inputProps
+    } = props;
     if (!ref) {
         ref = useRef(null);
     }
@@ -22,11 +38,18 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
     const lastValue = useRef(null);
     const [options, optionsContextRef, _, cacheSelectCfg] = useOptions(false);
     const [visible, setVisible, handleFocus, handleBlur, whenPickerHiden] = useVisible(props, lastValue);
-    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle, searchRef] = useValue(props, cacheSelectCfg, align, whenPickerHiden, lastValue, visible);
+    const [value, searchChangeHandle, onOptionSelect, compositionStartHandle, compositionEndHandle, searchRef] = useValue(
+        props,
+        cacheSelectCfg,
+        align,
+        whenPickerHiden,
+        lastValue,
+        visible,
+    );
     const [focusValue, handleKeyDown, scrollwrapRef] = useNnavigate(options, value, onOptionSelect, setVisible, true);
     const classString = classNames(prefixCls, className, {
         [`${prefixCls}-visible`]: false,
-        [`${prefixCls}-disabled`]: props.disabled
+        [`${prefixCls}-disabled`]: props.disabled,
     });
 
     function renderInput() {
@@ -39,7 +62,8 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
             onBlur: handleBlur,
             onFocus: handleFocus,
             onCompositionStart: compositionStartHandle,
-            onCompositionEnd: compositionEndHandle
+            onCompositionEnd: compositionEndHandle,
+            ref,
         };
 
         if (children) {
@@ -63,8 +87,18 @@ export const AutoComplete = React.forwardRef((props: AutoCompleteProps, ref: Rea
 
     return (
         <ValueContext.Provider value={{ value, onSelect: onOptionSelect }}>
-            <Trigger prefixCls={`xy-select-transition`} visible={visible} onChange={setVisible} alignRef={align} action={ACTION} popupAlign={POPUPALIGN} popupClassName={popupClassName} stretch={stretch} popup={renderDropdown()}>
-                <div className={classString} style={style} ref={ref}>
+            <Trigger
+                prefixCls={`xy-select-transition`}
+                visible={visible}
+                onChange={setVisible}
+                alignRef={align}
+                action={ACTION}
+                popupAlign={POPUPALIGN}
+                popupClassName={popupClassName}
+                stretch={stretch}
+                popup={renderDropdown()}
+            >
+                <div className={classString} style={style}>
                     {renderInput()}
                 </div>
             </Trigger>
